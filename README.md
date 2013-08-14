@@ -8,6 +8,10 @@ I decided to implement this because rawdog was lacking templating support(it onl
 It simply reads feeds urls from "feeds" file, fetches them via amazing [feedzirra]() gem, merges them and spits out via a customizable ERB template.  
   
 It supports parallel fetching of feeds, also it can limit articles by count or filter them by time.   
+
+Demo
+----
+My furby: http://p.cogunluklazararsiz.org/furby/
   
 Installation & Usage
 --------------------
