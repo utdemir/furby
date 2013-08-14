@@ -12,7 +12,11 @@ It supports parallel fetching of feeds, also it can limit articles by count or f
 Installation & Usage
 --------------------
 
-Installation is done via bundler, just a `bundle install` command should be sufficient.
+Installation is done via bundler, just a `bundle install` command should be sufficient:
+
+    git clone git@github.com:utdemir/furby.git
+    cd furby
+    bundle install
   
 Currently, configuration is done via modifying the source(`furby.rb`), although it is pretty simple:
     
