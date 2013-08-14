@@ -41,7 +41,9 @@ feeds.each do |feed|
   end
 end
 
-entries.sort_by { |i| i.published }
+entries.sort_by! { |i| i.published }
+entries.reverse!
+
 entries.slice! MAX_ITEMS
 
 template_string = File.read TEMPLATE
