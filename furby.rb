@@ -1,6 +1,8 @@
 #!/usr/bin/ruby
 
 require 'erb'
+require 'date'
+
 require 'feedzirra'
 
 FEEDS = "./feeds"
@@ -9,7 +11,7 @@ OUTPUT = "./output.html"
 
 THREAD_COUNT = 2
 MAX_ITEMS = 100
-OLDEST_ITEM = 60*24 # minutes
+SINCE = DateTime.now - 2 # show for last two days
 
 urls = File.readlines FEEDS
 urls.map! { |url| url.chomp }
@@ -35,7 +37,7 @@ threads.each { |t| t.join }
 
 entries = []
 feeds.each do |feed| 
-  feed.entries.each do |entry| 
+  feed.entries.take_while { |e| e.published >= SINCE }.each do |entry| 
     entry[:feed] = feed
     entries << entry 
   end
@@ -44,7 +46,7 @@ end
 entries.sort_by! { |i| i.published }
 entries.reverse!
 
-entries.slice! MAX_ITEMS
+entries.slice! MAX_ITEMS..entries.size
 
 template_string = File.read TEMPLATE
 template = ERB.new template_string
