@@ -14,7 +14,7 @@ Installation & Usage
 
 Installation is done via bundler, just a `bundle install` command should be sufficient:
 
-    git clone git@github.com:utdemir/furby.git
+    git clone https://github.com/utdemir/furby.git
     cd furby
     bundle install
   
