@@ -29,7 +29,7 @@
 <% @entries.group_by {|e| e.published.strftime("%A, %d %B %Y")}.each do |date, entries_| %>
   <div class="day"><h2> <%= date %></h2></div>
   <% entries_.each do |entry| %>
-    <div class="time"><h3><%= entry.published.strftime("%R") %></h3><div>
+    <div class="time"><h3><%= entry.published.strftime("%R") %></h3></div>
     <div class="item">
       <p class="itemheader">
         <span class="itemtitle"><a href="<%= entry.url %>"><%= entry.title %></a></span>
