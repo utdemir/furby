@@ -16,8 +16,8 @@ MAX_ITEMS = 100
 SINCE = nil
 
 urls = File.readlines FEEDS
-urls.map! { |url| url.chomp }
-urls.select! { |url| not url.empty? and not url =~ /^\s*#/ }
+urls.map! { |i| i.gsub(/#.*$/, "").strip }
+urls.select { |i| not i.empty? }
 
 feeds = []
 threads = []
