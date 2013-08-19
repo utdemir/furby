@@ -11,7 +11,7 @@ OUTPUT = "./output.html"
 
 THREAD_COUNT = 2
 MAX_ITEMS = 100
-SINCE = DateTime.now - 2 # show for last two days
+SINCE = DateTime.now - 7 # show just last week's items
 
 urls = File.readlines FEEDS
 urls.map! { |url| url.chomp }
