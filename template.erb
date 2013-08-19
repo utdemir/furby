@@ -29,22 +29,19 @@
               <h2> <%= date %></h2>
             </div>
           </div>
-          
+
+          <ul class="list-group">
           <% entries_.each do |entry| %>
-            <table>
-              <thead>
-                <h3>
-                  <a href="<%= entry.url %>"><%= entry.title %></a> - 
+              <li class="list-group-item">
+                <div class="well well-sm">
+                  <b><a href="<%= entry.url %>"><%= entry.title %></a></b> - 
                   <small><%= entry.published.strftime("%R") %></small>
                   <div class="pull-right"><a href="<%= entry[:feed].url %>"><small><%= entry[:feed].title %></small></a></div>
-                </h3>
-              </thead>
-              <tbody>
+                </div>
                 <%= entry.content or entry.summary %>
-              </tbody>
-            </table>
-            <hr>
+              </li>
           <% end %>
+          </ul>
         <% end %>
       </div>
 
