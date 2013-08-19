@@ -30,18 +30,18 @@
             </div>
           </div>
 
-          <ul class="list-group">
           <% entries_.each do |entry| %>
-              <li class="list-group-item">
-                <div class="well well-sm">
-                  <b><a href="<%= entry.url %>"><%= entry.title %></a></b> - 
-                  <small><%= entry.published.strftime("%R") %></small>
-                  <div class="pull-right"><a href="<%= entry[:feed].url %>"><small><%= entry[:feed].title %></small></a></div>
-                </div>
+            <div class="panel">
+              <div class="panel-heading">
+                <b><a href="<%= entry.url %>"><%= entry.title %></a></b> - 
+                <small><%= entry.published.strftime("%R") %></small>
+                <div class="pull-right"><a href="<%= entry[:feed].url %>"><small><%= entry[:feed].title %></small></a></div>
+              </div>
+              <div class="panel-body">
                 <%= entry.content or entry.summary %>
-              </li>
+              </div>
+            </div>  
           <% end %>
-          </ul>
         <% end %>
       </div>
 
