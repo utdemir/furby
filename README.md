@@ -1,13 +1,13 @@
 Furby
 =====
 
-A simplified(currently 67SLOC!) [rawdog][] clone written in Ruby, using ERB templates.
+A simplified (currently 67SLOC!) [rawdog][] clone written in Ruby, using ERB templates.
 
-I decided to implement this because rawdog was lacking templating support(it only supports styling via css), and there wasn't any alternative for static feed readers. 
+I decided to implement this because rawdog was lacking templating support (it only supports styling via css), and there weren't any other alternatives for static feed readers. 
 
-It simply reads feeds urls from "feeds" file, fetches them via amazing [feedzirra][] gem, merges them and spits out via a customizable ERB template. I also wrote a nice front-end based on Bootstrap. 
+It simply reads feed urls from "feeds" file, fetches them via amazing [feedzirra][] gem, merges them and spits out via a customizable ERB template. I also wrote a nice front-end based on Bootstrap. 
   
-It supports parallel fetching of feeds, also it can limit articles by count or filter them by time.   
+It supports parallel fetching of feeds. Also, it can limit articles by count or filter them by time.   
 
 Demo
 ----
@@ -16,13 +16,13 @@ My furby: http://p.cogunluklazararsiz.org/furby/
 Installation & Usage
 --------------------
 
-Installation is done via bundler, just a `bundle install` command should be sufficient:
+Installation is done via bundler, a simple`bundle install` command should be sufficient:
 
     git clone https://github.com/utdemir/furby.git
     cd furby
     bundle install
   
-Currently, configuration is done via modifying the source(`furby.rb`), although it is pretty simple:
+Currently, configuration is done via modifying the source (`furby.rb`), although it is pretty simple:
     
     FEEDS = "./feeds"
     TEMPLATE = "./template.erb"
