@@ -39,7 +39,8 @@ entries = []
 feeds.each do |feed| 
   feed.entries.take_while { |e| e.published >= SINCE }.each do |entry| 
     entry[:feed] = feed
-    entries << entry 
+    # entry.sanitize! # Not working currently: https://github.com/sparklemotion/nokogiri/issues/553
+    entries << entry
   end
 end
 
