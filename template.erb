@@ -35,7 +35,7 @@
         <span class="itemtitle"><a href="<%= entry.url %>"><%= entry.title %></a></span>
         <span class="itemfrom">[<a href="<%= entry[:feed].url %>"><%= entry[:feed].title %></a>]</span>
       </p>
-      <div class="itemdescription"><%= entry.summary %></div>
+      <div class="itemdescription"><%= entry.content %></div>
     </div>
   <% end %>
 <% end %>
