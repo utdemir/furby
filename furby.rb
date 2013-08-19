@@ -11,7 +11,9 @@ OUTPUT = "./output.html"
 
 THREAD_COUNT = 2
 MAX_ITEMS = 100
-SINCE = DateTime.now - 7 # show just last week's items
+
+# SINCE = DateTime.now - 7 # show just last week's items
+SINCE = nil
 
 urls = File.readlines FEEDS
 urls.map! { |url| url.chomp }
@@ -37,7 +39,7 @@ threads.each { |t| t.join }
 
 entries = []
 feeds.each do |feed| 
-  feed.entries.take_while { |e| e.published >= SINCE }.each do |entry| 
+  feed.entries.take_while { |e| not SINCE or e.published >= SINCE }.each do |entry| 
     entry[:feed] = feed
     # entry.sanitize! # Not working currently: https://github.com/sparklemotion/nokogiri/issues/553
     entries << entry
