@@ -17,7 +17,7 @@ SINCE = nil
 
 urls = File.readlines FEEDS
 urls.map! { |i| i.gsub(/#.*$/, "").strip }
-urls.select { |i| not i.empty? }
+urls.select! { |i| not i.empty? }
 
 feeds = []
 threads = []
