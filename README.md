@@ -16,7 +16,7 @@ My furby: http://p.cogunluklazararsiz.org/furby/
 Installation & Usage
 --------------------
 
-Installation is done via bundler, a simple`bundle install` command should be sufficient:
+Installation is done via bundler, a simple `bundle install` command should be sufficient:
 
     git clone https://github.com/utdemir/furby.git
     cd furby
