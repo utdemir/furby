@@ -2,18 +2,32 @@
 
 require 'erb'
 require 'date'
+require 'optparse'
 
 require 'feedzirra'
 
-FEEDS = "./feeds"
-TEMPLATE = "./template.erb"
-OUTPUT = "./output.html"
+VERSION = :devel
 
-THREAD_COUNT = 2
-MAX_ITEMS = 100
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: furby.rb [-c N] [-d N] [-t N] feeds template output"
+  opts.on("-c", "--count N", Integer, "Maximum article count") do |c|
+    $max_items = c
+  end
+  opts.on("-t", "--threads N", Integer, "Maximum parallel requests when fetching feeds [3]") do |t|
+    $threads = t
+  end
+  opts.on("-d", "--days N", Integer, "Don't show articles older than N days") do |n|
+    $since = DateTime.now - n
+  end
+end
+parser.parse!
 
-# SINCE = DateTime.now - 7 # show just last week's items
-SINCE = nil
+if ARGV.length != 3 
+  puts parser
+  exit
+end
+
+FEEDS, TEMPLATE, OUTPUT = ARGV
 
 urls = File.readlines FEEDS
 urls.map! { |i| i.gsub(/#.*$/, "").strip }
@@ -23,7 +37,7 @@ feeds = []
 threads = []
 errors = {}
 
-urls.each_slice((urls.size / THREAD_COUNT.to_f).ceil) do |s|
+urls.each_slice((urls.size / ($thread_count or 3).to_f).ceil) do |s|
   threads << Thread.new do
     (Feedzirra::Feed.fetch_and_parse s).each do |url, feed|
       if feed.kind_of? Fixnum 
@@ -39,7 +53,7 @@ threads.each { |t| t.join }
 
 entries = []
 feeds.each do |feed| 
-  feed.entries.take_while { |e| not SINCE or e.published >= SINCE }.each do |entry| 
+  feed.entries.take_while { |e| $since ? e.published >= $since : true }.each do |entry| 
     entry[:feed] = feed
     # entry.sanitize! # Not working currently: https://github.com/sparklemotion/nokogiri/issues/553
     entries << entry
@@ -49,7 +63,7 @@ end
 entries.sort_by! { |i| i.published }
 entries.reverse!
 
-entries.slice! MAX_ITEMS..entries.size
+entries.slice! $max_items..entries.size if $max_items
 
 template_string = File.read TEMPLATE
 template = ERB.new template_string
@@ -59,6 +73,7 @@ class AccessController
     @feeds = feeds
     @entries = entries
     @errors = errors
+    @version = VERSION
   end
   def get_binding 
     binding
