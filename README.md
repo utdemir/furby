@@ -24,15 +24,18 @@ Installation is done via bundler, a simple `bundle install` command should be su
     cd furby
     bundle install
   
-Currently, configuration is done via modifying the source (`furby.rb`), although it is pretty simple:
+Currently, configuration is done via command line arguments:
     
-    FEEDS = "./feeds"
-    TEMPLATE = "./template.erb"
-    OUTPUT = "./output.html"
-    
-    THREAD_COUNT = 2
-    MAX_ITEMS = 100
-    SINCE = DateTime.now - 2 # show for last two days
+    $ ./furby.rb 
+    Usage: furby.rb [-c N] [-d N] [-t N] feeds template output
+       -c, --count N                    Maximum article count
+       -t, --threads N                  Maximum parallel requests when fetching feeds [3]
+       -d, --days N                     Don't show articles older than N days
+
+
+`feeds`, `template` and `output` corresponds to feed url list, the erb template and the output files respectively. To use defaults;
+
+    ./furby.rb feeds template.erb output.html
     
 [feed file] is just feed url's on separate lines and [template] is a ERB template, defaults are explanatory.  
 
