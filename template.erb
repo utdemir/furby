@@ -30,7 +30,15 @@ START_COLLAPSED = true
 </head>
 <body>
   <div class="container">
-    <header><div class="page-header"><h1><b>furby</b><div class="pull-right"><small><%= @version %></small></div></h1></div></header>
+    <header>
+      <div class="page-header">
+        <h1>
+          <b>furby</b>
+          <small><%= DateTime::now.strftime "%F %R" %></small>
+          <div class="pull-right"><small><%= @version %></small></div>
+        </h1>
+      </div>
+    </header>
 
     <% @errors.each do |url, status| %>
       <div class="alert alert-danger">
