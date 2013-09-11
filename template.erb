@@ -33,19 +33,19 @@ START_COLLAPSED = true
   </style>
   
   <script type="text/javascript">
-    toggleStatus = false;
-    function togglePanels() {
-      var panels = document.getElementsByClassName("panel-collapse");
-      var panel;
-      for (i = 0; i < panels.length; ++i) {
-        panel = panels[i];
-        panel.className = panel.className.replace(/(?:^|\s)in(?!\S)/g, '');
-        if(!toggleStatus) panel.className += " in";
-      }
-      toggleStatus = !toggleStatus;
-      var text = (toggleStatus ? "Collapse" : "Expand") + " All";
-      document.getElementById("toggle-btn").text = text;
-    }
+    $(function(){
+      toggle_status = false;
+      $('#toggle-btn').click(function() {
+        $('.panel-collapse').collapse(toggle_status ? 'show' : 'hide');
+        toggle_status = !toggle_status;
+      });
+      $('.panel-collapse').on('hidden.bs.collapse', function () {
+        $('#toggle-btn').text("Expand All")
+      });
+      $('.panel-collapse').on('shown.bs.collapse', function () {
+        $('#toggle-btn').text("Collapse All")
+      });
+   });
   </script>
 </head>
 <body>
@@ -66,7 +66,7 @@ START_COLLAPSED = true
       </div>
     <% end %>
 
-    <a id="toggle-btn" class="btn btn-xs btn-default pull-right" onclick="togglePanels();">Expand All</a>
+    <a id="toggle-btn" class="btn btn-xs btn-default pull-right">Expand All</a>
     <% @entries.group_by {|e| e.published.strftime("%A, %d %B %Y")}.each do |date, entries_| %>
       <h4 class="text-center"><date><%= date %></date></h4>
       <% entries_.each do |entry| %>
