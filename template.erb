@@ -6,47 +6,47 @@ START_COLLAPSED = true
    "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-    <title>Furby</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="robots" content="noindex,nofollow,noarchive">
+   <title>Furby</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex,nofollow,noarchive">
 
-    <script src="http://code.jquery.com/jquery.js"></script>    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+  <script src="http://code.jquery.com/jquery.js"></script>  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
 
-    <style media="screen" type="text/css">
-      .panel-heading {
-        padding-top: 4px;
-        padding-bottom: 4px;
-        border-bottom: 0px;
+  <style media="screen" type="text/css">
+    .panel-heading {
+      padding-top: 4px;
+      padding-bottom: 4px;
+      border-bottom: 0px;
+    }
+    .panel {
+      margin-bottom: 0px;
+      border-radius: 0px;
+      border-bottom-width: 1px;
+      border-top-width: 0px;
+      border-left-width: 0px;
+      border-right-width: 0px;
+    }
+  </style>
+  
+  <script type="text/javascript">
+    toggleStatus = false;
+    function togglePanels() {
+      var panels = document.getElementsByClassName("panel-collapse");
+      var panel;
+      for (i = panels.length - 1; i >= 0; --i) {
+        panel = panels[i];
+        panel.className = panel.className.replace(/(?:^|\s)in(?!\S)/g, '');
+        if(!toggleStatus) panel.className += " in";
       }
-      .panel {
-        margin-bottom: 0px;
-        border-radius: 0px;
-        border-bottom-width: 1px;
-        border-top-width: 0px;
-        border-left-width: 0px;
-        border-right-width: 0px;
-      }
-    </style>
-    
-    <script type="text/javascript">
-        toggleStatus = false;
-        function togglePanels() {
-            var panels = document.getElementsByClassName("panel-collapse");
-            var panel;
-            for (i = panels.length - 1; i >= 0; --i) {
-                panel = panels[i];
-                panel.className = panel.className.replace(/(?:^|\s)in(?!\S)/g, '');
-                if(!toggleStatus) panel.className += " in";
-            }
-            toggleStatus = !toggleStatus;
-            var text = (toggleStatus ? "Collapse" : "Expand") + " All";
-            document.getElementById("toggle-btn").text = text;
-        }
-    </script>
+      toggleStatus = !toggleStatus;
+      var text = (toggleStatus ? "Collapse" : "Expand") + " All";
+      document.getElementById("toggle-btn").text = text;
+    }
+  </script>
 </head>
 <body>
   <div class="container">
