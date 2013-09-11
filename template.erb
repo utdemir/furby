@@ -33,17 +33,25 @@ START_COLLAPSED = true
   </style>
   
   <script type="text/javascript">
-    $(function(){
-      toggle_status = false;
+    $(function() {
+      open_panel_count = <%= START_COLLAPSED %> ? 0 : $(".panel-collapse").length;
+      function update_toggle_button() { 
+        $('#toggle-btn').text((open_panel_count ? "Collapse" : "Expand") + " All")
+      }
+      update_toggle_button(); // Run once on page load to text #toggle-btn
+
       $('#toggle-btn').click(function() {
-        $('.panel-collapse').collapse(toggle_status ? 'show' : 'hide');
-        toggle_status = !toggle_status;
+        $('.panel-collapse').collapse(open_panel_count ? 'hide' : 'show');
       });
-      $('.panel-collapse').on('hidden.bs.collapse', function () {
-        $('#toggle-btn').text("Expand All")
-      });
+
       $('.panel-collapse').on('shown.bs.collapse', function () {
-        $('#toggle-btn').text("Collapse All")
+        open_panel_count++;
+        update_toggle_button();
+      });
+
+      $('.panel-collapse').on('hidden.bs.collapse', function () {
+        open_panel_count--;
+        update_toggle_button();
       });
    });
   </script>
@@ -55,7 +63,7 @@ START_COLLAPSED = true
         <h1>
           <b>furby</b>
           <small><%= DateTime::now.strftime "%F %R %Z" %></small>
-          <a id="toggle-btn" class="btn btn-sm pull-right">Expand All</a>
+          <a id="toggle-btn" class="btn btn-sm pull-right"></a>
         </h1>
       </div>
     </header>
