@@ -31,6 +31,22 @@ START_COLLAPSED = true
         border-right-width: 0px;
       }
     </style>
+    
+    <script type="text/javascript">
+        toggleStatus = false;
+        function togglePanels() {
+            var panels = document.getElementsByClassName("panel-collapse");
+            var panel;
+            for (i = panels.length - 1; i >= 0; --i) {
+                panel = panels[i];
+                panel.className = panel.className.replace(/(?:^|\s)in(?!\S)/g, '');
+                if(!toggleStatus) panel.className += " in";
+            }
+            toggleStatus = !toggleStatus;
+            var text = (toggleStatus ? "Collapse" : "Expand") + " All";
+            document.getElementById("toggle-btn").text = text;
+        }
+    </script>
 </head>
 <body>
   <div class="container">
@@ -49,7 +65,8 @@ START_COLLAPSED = true
         <p>Feed <b><%= url %></b> returned code <b><%= status %></b>.</p>
       </div>
     <% end %>
-      
+
+    <a id="toggle-btn" class="btn btn-xs btn-default pull-right" onclick="togglePanels();">Expand All</a>
     <% @entries.group_by {|e| e.published.strftime("%A, %d %B %Y")}.each do |date, entries_| %>
       <h4 class="text-center"><date><%= date %></date></h4>
       <% entries_.each do |entry| %>
