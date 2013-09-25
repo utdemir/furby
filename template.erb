@@ -40,6 +40,11 @@ START_COLLAPSED = true
       }
       update_toggle_button(); // Run once on page load to text #toggle-btn
 
+
+      $('.panel-collapse').collapse({
+        toggle: false
+      });
+
       $('#toggle-btn').click(function() {
         $('.panel-collapse').collapse(open_panel_count ? 'hide' : 'show');
       });
