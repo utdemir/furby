@@ -84,7 +84,8 @@ START_COLLAPSED = true
       <% entries_.each do |entry| %>
         <div class="panel panel-default">
           <div class="panel-heading" data-toggle="collapse" data-target="#entry<%= entry.hash %>">
-            <b><a href="<%= entry.url %>"><%= entry.title %></a></b> - 
+            <a href="<%= entry.url %>"><span class="glyphicon glyphicon-globe"></span></a>
+            <b><%= entry.title %></b> - 
             <small><time><%= entry.published.strftime("%R") %></time></small>
             <div class="pull-right">
               <a href="<%= entry[:feed].url %>"><small><%= entry[:feed].title %></small></a>
