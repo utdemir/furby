@@ -55,7 +55,7 @@ entries = []
 feeds.each do |feed| 
   feed.entries.take_while { |e| $since ? e.published >= $since : true }.each do |entry| 
     entry[:feed] = feed
-    # entry.sanitize! # Not working currently: https://github.com/sparklemotion/nokogiri/issues/553
+    entry.sanitize! 
     entries << entry
   end
 end
