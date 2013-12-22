@@ -94,7 +94,7 @@ require 'uri' if SHOW_FAVICONS
               <a href="<%= entry[:feed].url %>"><small><%= entry[:feed].title %></small>
               <% if SHOW_FAVICONS %>
                 <% u = URI.parse(entry[:feed].url) %>
-                <img src=<%= "#{u.scheme}://#{u.host}/favicon.ico" %>></img>
+                <img src=<%= "#{u.scheme}://#{u.host}/favicon.ico" %> alt=" "></img>
               <% end %>
               </a>
             </div>
