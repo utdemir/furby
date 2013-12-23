@@ -60,7 +60,7 @@ feeds.each do |feed|
   end
 end
 
-entries.sort_by! { |i| i.published }
+entries.sort_by! { |i| i.published or Time.now }
 entries.reverse!
 
 entries.slice! $max_items..entries.size if $max_items

@@ -82,14 +82,16 @@ require 'uri' if SHOW_FAVICONS
       </div>
     <% end %>
 
-    <% @entries.group_by {|e| e.published.strftime("%A, %d %B %Y")}.each do |date, entries_| %>
+    <% @entries.group_by {|e| e.published and e.published.strftime("%A, %d %B %Y")}.each do |date, entries_| %>
       <h4 class="text-center"><date><%= date %></date></h4>
       <% entries_.each do |entry| %>
         <div class="panel panel-default">
           <div class="panel-heading" data-toggle="collapse" data-target="#entry<%= entry.hash %>">
             <a href="<%= entry.url %>"><span class="glyphicon glyphicon-globe"></span></a>
-            <b><%= entry.title %></b> - 
-            <small><time><%= entry.published.strftime("%R") %></time></small>
+            <b><%= entry.title %></b>
+            <% if entry.published %>
+                - <small><time><%= entry.published.strftime("%R") %></time></small>
+            <% end %>
             <div class="pull-right">
               <a href="<%= entry[:feed].url %>"><small><%= entry[:feed].title %></small>
               <% if SHOW_FAVICONS %>
