@@ -17,7 +17,7 @@ parser = OptionParser.new do |opts|
     $threads = t
   end
   opts.on("-d", "--days N", Integer, "Don't show articles older than N days") do |n|
-    $since = DateTime.now - n
+    $since = Time.now - 60 * 60 * 24 * n
   end
 end
 parser.parse!
@@ -53,7 +53,9 @@ threads.each { |t| t.join }
 
 entries = []
 feeds.each do |feed| 
-  feed.entries.take_while { |e| $since ? e.published >= $since : true }.each do |entry| 
+  feed.entries
+        .take_while { |e| $since and e.published ? e.published >= $since : true }
+        .each do |entry| 
     entry[:feed] = feed
     entry.sanitize! 
     entries << entry
