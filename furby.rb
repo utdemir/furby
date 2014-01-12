@@ -54,7 +54,7 @@ threads.each { |t| t.join }
 entries = []
 feeds.each do |feed| 
   feed.entries
-        .take_while { |e| $since and e.published ? e.published >= $since : true }
+        .take_while { |e| ($since and e.published) ? e.published >= $since : true }
         .each do |entry| 
     entry[:feed] = feed
     entry.sanitize! 
