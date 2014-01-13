@@ -33,6 +33,10 @@ require 'uri' if SHOW_FAVICONS
       border-left-width: 0px;
       border-right-width: 0px;
     }
+
+    .glyphicon {
+      margin-right: 10px;
+    }
   </style>
   
   <script type="text/javascript">
@@ -87,8 +91,8 @@ require 'uri' if SHOW_FAVICONS
       <% entries_.each do |entry| %>
         <div class="panel panel-default">
           <div class="panel-heading" data-toggle="collapse" data-target="#entry<%= entry.hash %>">
-            <a href="<%= entry.url %>"><span class="glyphicon glyphicon-globe"></span></a>
-            <b><%= entry.title %></b>
+            <span class="glyphicon glyphicon-chevron-down"></span>
+            <b><a href="<%= entry.url %>"><%= entry.title %></a></b>
             <% if entry.published %>
                 - <small><time><%= entry.published.strftime("%R") %></time></small>
             <% end %>
