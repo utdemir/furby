@@ -104,6 +104,8 @@ require 'uri' if SHOW_FAVICONS
           <div id="entry<%= entry.hash %>" class="panel-collapse collapse <%= "in" if not START_COLLAPSED %>">
             <div class="panel-body">
               <%= entry.content or entry.summary %>
+              <hr/>
+              URL: <a href="<%= entry.url %>"><%= entry.url %></a> 
             </div>
           </div>
         </div>
