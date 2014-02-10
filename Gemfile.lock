@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     curb (0.8.5)
-    feedzirra (0.7.0)
+    feedzirra (0.7.1)
       curb (~> 0.8.1)
       loofah (~> 1.2.1)
       sax-machine (~> 0.2.1)
