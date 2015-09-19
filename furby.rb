@@ -4,7 +4,7 @@ require 'erb'
 require 'date'
 require 'optparse'
 
-require 'feedzirra'
+require 'feedjira'
 
 VERSION = :devel
 
@@ -39,7 +39,8 @@ errors = {}
 
 urls.each_slice((urls.size / ($thread_count or 3).to_f).ceil) do |s|
   threads << Thread.new do
-    (Feedzirra::Feed.fetch_and_parse s).each do |url, feed|
+    s.each do |url|
+      feed = Feedjira::Feed.fetch_and_parse url
       if feed.kind_of? Fixnum 
         # on errors, feedzirra returns error code as a Fixnum
         errors[url] = feed 
