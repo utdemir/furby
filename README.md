@@ -13,7 +13,7 @@ It supports parallel fetching of feeds. Also, it can limit articles by count or 
 
 Demo
 ----
-My furby: http://p.cogunluklazararsiz.org/furby/
+Example: http://utdemir.github.io/furby
   
 Installation & Usage
 --------------------
